@@ -25,7 +25,7 @@ jobs:
       mongodb:
         image: mongo
         env:
-          MONGODB_INITDB_ROOT_USERNAME: $MONGO_USERNAME
+          MONGODB_INITDB_ROOT_USERNAME: ${{ env.MONGO_USERNAME }}
           MONGODB_INITDB_ROOT_PASSWORD: $MONGO_PASSWORD
     steps:
       - name: Get Code
