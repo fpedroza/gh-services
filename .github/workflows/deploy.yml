@@ -7,8 +7,8 @@ on:
 env:
   CACHE_KEY: node-deps
   MONGODB_DB_NAME: gha-dem
-  MONGO_USERNAME: root
-  MONGO_PASSWORD: example
+  MONGODB_USERNAME: root
+  MONGODB_PASSWORD: example
 jobs:
   test:
     environment: testing
@@ -18,15 +18,13 @@ jobs:
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb
       MONGODB_CLUSTER_ADDRESS: mongodb
-      MONGODB_USERNAME: ${{ env.MONGO_USERNAME }}
-      MONGODB_PASSWORD: ${{ env.MONGO_PASSWORD }}
       PORT: 8080
     services:
       mongodb:
         image: mongo
         env:
-          MONGODB_INITDB_ROOT_USERNAME: ${{ env.MONGO_USERNAME }}
-          MONGODB_INITDB_ROOT_PASSWORD: ${{ env.MONGO_PASSWORD }}
+          MONGODB_INITDB_ROOT_USERNAME: ${{ env.MONGODB_USERNAME }}
+          MONGODB_INITDB_ROOT_PASSWORD: ${{ env.MONGODB_PASSWORD }}
     steps:
       - name: Get Code
         uses: actions/checkout@v3
